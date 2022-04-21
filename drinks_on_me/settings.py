@@ -156,3 +156,4 @@ REST_FRAMEWORK = {
 }
 
 django_on_heroku.settings(locals())
+CSRF_TRUSTED_ORIGINS = ["https://drinks-on-me-jtb.herokuapp.com"]
