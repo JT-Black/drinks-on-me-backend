@@ -9,6 +9,7 @@ import jwt
 from .serializers import UserSerializer
 User = get_user_model()
 
+
 class RegisterView(APIView):
 
     def post(self, request):
@@ -31,23 +32,27 @@ class LoginView(APIView):
             user = User.objects.get(email=email)
         except User.DoesNotExist:
             raise PermissionDenied({'message': 'Invalid credentials'})
-        
+
         if not user.check_password(password):
             raise PermissionDenied({'message': 'Invalid credentials'})
 
         dt = datetime.now() + timedelta(days=7)
-        
 
         token = jwt.encode(
-          {'sub': user.id,
-          'exp': int(dt.strftime('%s'))}, 
-          settings.SECRET_KEY, 
-          algorithm='HS256')
-        return Response({'token': token, 'message': f'Welcome back {user.username}!'})
+            {'sub': user.id,
+             'exp': int(dt.strftime('%s'))},
+            settings.SECRET_KEY,
+            algorithm='HS256')
+        # Changed the below to also send the username and id to the front end.
+        id = user.id
+        username = user.username
+        print(id, username)
+        return Response({'token': token, 'message': f'Welcome back {user.username}!', 'id': id, 'username': username})
+
 
 class CredentialsView(APIView):
 
-    permission_classes = [IsAuthenticated,]
+    permission_classes = [IsAuthenticated, ]
 
     def get(self, request):
         serializer = UserSerializer(request.user)
