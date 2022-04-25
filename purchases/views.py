@@ -31,7 +31,7 @@ class PurchaseDetail(RetrieveAPIView):
 class Purchase(APIView):
   permission_classes = [IsAuthenticated]
   def post(self, request):
-    user = User.objects.get(pk=request.data["user_id"])
+    user = AppUser.objects.get(pk=request.data["user_id"])
     pub = Pub.objects.get(pk=request.data["pub_id"])
     purchased_drink = Drink.objects.get(pk=request.data["drink_id"])
     purchase_amount = purchased_drink.price

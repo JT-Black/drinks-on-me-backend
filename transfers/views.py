@@ -36,8 +36,8 @@ class Transfer(APIView):
     transfer_amount = request.data["amount"]
     print(f'sender id:{sending_user_id}')
     print(f'receiver id:{receiving_user_id}')
-    sending_user = User.objects.get(pk=sending_user_id)
-    receiving_user = User.objects.get(pk=receiving_user_id)
+    sending_user = AppUser.objects.get(pk=sending_user_id)
+    receiving_user = AppUser.objects.get(pk=receiving_user_id)
     print(f'sender :{sending_user}')
     print(f'receiver :{receiving_user}')
     if sending_user.balance < transfer_amount:
