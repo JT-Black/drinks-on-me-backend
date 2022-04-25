@@ -155,5 +155,8 @@ REST_FRAMEWORK = {
     ],
 }
 
-django_on_heroku.settings(locals())
+AUTH_USER_MODEL = 'users.AppUser'
+
 CSRF_TRUSTED_ORIGINS = ["https://drinks-on-me-jtb.herokuapp.com"]
+
+django_on_heroku.settings(locals())

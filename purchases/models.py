@@ -1,6 +1,6 @@
 from django.db import models
 from drinks.models import Drink
-from users.models import User
+from users.models import AppUser
 from pubs.models import Pub
 
 
@@ -8,7 +8,7 @@ from pubs.models import Pub
 
 class Purchase(models.Model):
     drink = models.ForeignKey(Drink, related_name='purchases', on_delete=models.PROTECT)
-    user = models.ForeignKey(User, related_name='purchases',on_delete=models.PROTECT)
+    user = models.ForeignKey(AppUser, related_name='purchases',on_delete=models.PROTECT)
     pub = models.ForeignKey(Pub, related_name='purchases',on_delete=models.PROTECT)
 
 

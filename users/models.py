@@ -1,12 +1,13 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
-class User(models.Model):
+class AppUser(AbstractUser):
 
-    username = models.CharField(max_length=100)
+    
     balance = models.IntegerField(null=True)
-    image = models.CharField(max_length=200)
-    email = models.CharField(max_length=100)
+    image = models.CharField(max_length=200, null=True)
+    
 
 
     def __str__(self):
