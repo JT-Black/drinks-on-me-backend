@@ -44,8 +44,8 @@ class Transfer(APIView):
     # if int(sending_user.balance) < transfer_amount:
     #   return Response(status=402, data='insufficient balance')
     # else:
-    sending_user.balance -= transfer_amount
-    receiving_user.balance += transfer_amount 
+    sending_user.balance -= int(transfer_amount)
+    receiving_user.balance += int(transfer_amount) 
     sending_user.save()
     receiving_user.save()
     print(f'sender :{sending_user}')
