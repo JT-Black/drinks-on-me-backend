@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractUser
 class AppUser(AbstractUser):
 
     
-    balance = models.IntegerField(null=True)
+    balance = models.IntegerField(null=False)
     image = models.CharField(max_length=200, null=True)
     
 
